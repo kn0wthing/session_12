@@ -4,4 +4,6 @@ __pycache__/
 venv/
 .streamlit/
 *.pth
-*.pyc 
+*.pyc
+.env*
+!.env.example 

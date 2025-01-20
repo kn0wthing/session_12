@@ -33,44 +33,28 @@ def upload_to_hub(
         token=token
     )
     
-    # Initialize the repository with a README if it doesn't exist
-    try:
-        api.upload_file(
-            path_or_fileobj="README.md",
-            path_in_repo="README.md",
-            repo_id=repo_id,
-            repo_type="model",
-            token=token
-        )
-    except Exception as e:
-        print(f"Initial README upload: {e}")
-    
-    # Upload the model files
-    api.upload_file(
-        path_or_fileobj=model_path,
-        path_in_repo="gpt-config.pth",
-        repo_id=repo_id,
-        repo_type="model",
-        token=token
-    )
-    
-    # Upload all other files
+    # Upload all files
     files_to_upload = [
-        "requirements.txt",
-        "model.py",
+        ("README.md", "README.md"),
+        (model_path, "gpt-config.pth"),
+        ("requirements.txt", "requirements.txt"),
+        ("model.py", "model.py"),
     ]
     
-    for file in files_to_upload:
-        api.upload_file(
-            path_or_fileobj=file,
-            path_in_repo=file,
-            repo_id=repo_id,
-            repo_type="model",
-            token=token
-        )
+    for local_file, repo_path in files_to_upload:
+        try:
+            api.upload_file(
+                path_or_fileobj=local_file,
+                path_in_repo=repo_path,
+                repo_id=repo_id,
+                repo_type="model",
+                token=token
+            )
+        except Exception as e:
+            print(f"Error uploading {local_file}: {e}")
 
 if __name__ == "__main__":
     upload_to_hub(
         model_path="gpt-config.pth",
-        repo_name="custom-gpt-model",  # Changed to a more specific name
+        repo_name="custom-gpt-model"
     ) 
