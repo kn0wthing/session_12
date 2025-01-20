@@ -59,14 +59,18 @@ The model weights are stored in `gpt-config.pth`. The model uses the GPT-2 token
 ## Training Metrics
 - Final Loss: ~3.8
 - Training Speed: ~12,000 tokens/sec on GPU
-
+``` bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
 
+## Project Structure
+```
 your_project/
 ├── README.md
 ├── requirements.txt
 ├── model.py
 ├── upload_to_hub.py
 └── gpt-config.pth
+```
