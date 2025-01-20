@@ -10,11 +10,9 @@ load_dotenv()
 def upload_to_hub(
     model_path,
     repo_name,
-    organization=None,  # Optional: your organization name
-    token=None  # Token will be loaded from environment variable
 ):
     # Get token from environment variable
-    token = token or os.getenv('HF_TOKEN')
+    token = os.getenv('HF_TOKEN')
     if not token:
         raise ValueError("No Hugging Face token found. Please set HF_TOKEN environment variable.")
 
