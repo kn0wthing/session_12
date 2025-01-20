@@ -14,13 +14,22 @@ This repository contains a custom GPT model implementation trained for text gene
 
 1. Create and activate virtual environment:
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 2. Install dependencies:
 ```bash
 pip install -r requirements.txt
+```
+
+3. Set up environment variables:
+```bash
+# Copy example environment file
+cp .env.example .env
+
+# Edit .env file with your Hugging Face token
+# Replace 'your_huggingface_token_here' with your actual token
 ```
 
 ## Usage

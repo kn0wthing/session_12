@@ -1,13 +1,23 @@
 from huggingface_hub import HfApi
 from transformers import PreTrainedModel, PreTrainedTokenizer
 import torch
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 def upload_to_hub(
     model_path,
     repo_name,
     organization=None,  # Optional: your organization name
-    token="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"  # Your HF token
+    token=None  # Token will be loaded from environment variable
 ):
+    # Get token from environment variable
+    token = token or os.getenv('HF_TOKEN')
+    if not token:
+        raise ValueError("No Hugging Face token found. Please set HF_TOKEN environment variable.")
+
     # Initialize the HF API
     api = HfApi()
     
@@ -63,5 +73,4 @@ if __name__ == "__main__":
     upload_to_hub(
         model_path="gpt-config.pth",
         repo_name="custom-gpt-model",  # Changed to a more specific name
-        token="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"
     ) 
