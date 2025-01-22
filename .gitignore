@@ -6,4 +6,6 @@ venv/
 *.pth
 *.pyc
 .env*
-!.env.example 
+!.env.example
+!interface_screenshot.png
+!training_metrics.png 
